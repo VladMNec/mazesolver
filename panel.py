@@ -48,41 +48,41 @@ class Cell:
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
-        self.__x1 = None
-        self.__y1 = None
-        self.__x2 = None
-        self.__y2 = None
-        self.__win = window
+        self._x1 = None
+        self._y1 = None
+        self._x2 = None
+        self._y2 = None
+        self._win = window
 
     def draw(self, x1, y1, x2, y2):
-        self.__x1 = x1
-        self.__y1 = y1
-        self.__x2 = x2
-        self.__y2 = y2
-        self.__top_left = Point(self.__x1, self.__y1)
-        self.__bottom_left = Point(self.__x1, self.__y2)
-        self.__top_right = Point(self.__x2, self.__y1)
-        self.__bottom_right = Point(self.__x2, self.__y2)
+        self._x1 = x1
+        self._y1 = y1
+        self._x2 = x2
+        self._y2 = y2
+        self._top_left = Point(self._x1, self._y1)
+        self._bottom_left = Point(self._x1, self._y2)
+        self._top_right = Point(self._x2, self._y1)
+        self._bottom_right = Point(self._x2, self._y2)
 
         if self.has_left_wall:
-            self.__win.draw_line(Line(self.__top_left, self.__bottom_left), "black")
+            self._win.draw_line(Line(self._top_left, self._bottom_left), "black")
         if self.has_right_wall:
-            self.__win.draw_line(Line(self.__top_right, self.__bottom_right), "black")
+            self._win.draw_line(Line(self._top_right, self._bottom_right), "black")
         if self.has_top_wall:
-            self.__win.draw_line(Line(self.__top_left, self.__top_right), "black")
+            self._win.draw_line(Line(self._top_left, self._top_right), "black")
         if self.has_bottom_wall:
-            self.__win.draw_line(Line(self.__bottom_left, self.__bottom_right), "black")
+            self._win.draw_line(Line(self._bottom_left, self._bottom_right), "black")
 
     def draw_move(self, to_cell, undo=False):
         colour = "red"
         if undo:
             colour = "gray"
 
-        first_x = (self.__x1 + self.__x2) / 2
-        first_y = (self.__y1 + self.__y2) / 2
+        first_x = (self._x1 + self._x2) / 2
+        first_y = (self._y1 + self._y2) / 2
 
-        second_x = (to_cell.__x1 + to_cell.__x2) / 2
-        second_y = (to_cell.__y1 + to_cell.__y2) / 2
+        second_x = (to_cell._x1 + to_cell._x2) / 2
+        second_y = (to_cell._y1 + to_cell._y2) / 2
 
         line = Line(Point(first_x, first_y), Point(second_x, second_y))
-        self.__win.draw_line(line, colour)
+        self._win.draw_line(line, colour)
