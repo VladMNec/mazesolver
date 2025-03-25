@@ -59,16 +59,16 @@ class Cell:
         self.__y1 = y1
         self.__x2 = x2
         self.__y2 = y2
-        top_left = Point(self.__x1, self.__y1)
-        bottom_left = Point(self.__x1, self.__y2)
-        top_right = Point(self.__x2, self.__y1)
-        bottom_right = Point(self.__x2, self.__y2)
+        self.__top_left = Point(self.__x1, self.__y1)
+        self.__bottom_left = Point(self.__x1, self.__y2)
+        self.__top_right = Point(self.__x2, self.__y1)
+        self.__bottom_right = Point(self.__x2, self.__y2)
 
         if self.has_left_wall:
-            self.__win.draw_line(Line(top_left, bottom_left), "black")
+            self.__win.draw_line(Line(self.__top_left, self.__bottom_left), "black")
         if self.has_right_wall:
-            self.__win.draw_line(Line(top_right, bottom_right), "black")
+            self.__win.draw_line(Line(self.__top_right, self.__bottom_right), "black")
         if self.has_top_wall:
-            self.__win.draw_line(Line(top_left, top_right), "black")
+            self.__win.draw_line(Line(self.__top_left, self.__top_right), "black")
         if self.has_bottom_wall:
-            self.__win.draw_line(Line(bottom_left, bottom_right), "black")
+            self.__win.draw_line(Line(self.__bottom_left, self.__bottom_right), "black")
