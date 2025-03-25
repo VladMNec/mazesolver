@@ -1,10 +1,21 @@
 from panel import *
 
 win = Window(800, 600)
-cell = Cell(win)
-cell.has_right_wall = False
-cell.has_top_wall = False
-cell.draw(50, 50, 100, 100)
-win.draw_line(Line(Point(50, 60), Point(240, 130)), "red")
-win.draw_line(Line(Point(124, 543), Point(720, 480)), "black")
+
+cell1 = Cell(win)
+cell1.has_right_wall = False
+cell1.draw(50, 50, 100, 100)
+
+cell2 = Cell(win)
+cell2.has_left_wall = False
+cell2.has_bottom_wall = False
+cell2.draw(100, 50, 150, 100)
+cell1.draw_move(cell2)
+
+cell3 = Cell(win)
+cell3.has_top_wall = False
+cell3.has_right_wall = False
+cell3.draw(100, 100, 150, 150)
+cell2.draw_move(cell3, undo=True)
+
 win.wait_for_close()
