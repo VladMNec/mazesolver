@@ -4,7 +4,6 @@ from maze import *
 def main():
     win = Window(800, 600)
     maze = Maze(50, 50, 10, 14, 50, 50, win)
-    maze._animate()
 
     win.wait_for_close()
 

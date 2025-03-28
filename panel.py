@@ -18,6 +18,9 @@ class Window:
     def draw_line(self, line, fill_colour):
         line.draw(self.__canvas, fill_colour)
 
+    def del_line(self, line):
+        line.undraw(self.__canvas)
+
     def wait_for_close(self):
         self.__running = True
         while self.__running:
@@ -42,12 +45,14 @@ class Line:
         canvas.create_line(self.point_a.x, self.point_a.y, self.point_b.x, self.point_b.y, fill=fill_colour, width=2)
 
 
+
 class Cell:
     def __init__(self, window=None):
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
+        self.visited = False
         self._x1 = None
         self._y1 = None
         self._x2 = None
@@ -74,6 +79,7 @@ class Cell:
             self._win.draw_line(Line(self._top_left, self._top_right), "black")
         if self.has_bottom_wall:
             self._win.draw_line(Line(self._bottom_left, self._bottom_right), "black")
+
 
     def draw_move(self, to_cell, undo=False):
         if (self._x1 is None or self._y1 is None or self._x2 is None or self._y2 is None or
